@@ -5,11 +5,21 @@ import androidx.annotation.UiContext
 import androidx.room.Room
 import com.ivanalexeevich.news.data.local.NewsDao
 import com.ivanalexeevich.news.data.local.NewsDatabase
+import com.ivanalexeevich.news.data.remote.NewApiService
+import com.ivanalexeevich.news.data.repository.NewsRepositoryImpl
+import com.ivanalexeevich.news.domain.repository.NewsRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.Converter
+import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -17,14 +27,59 @@ import javax.inject.Singleton
 interface DataModule {
 
 
-    companion object{
+    @Binds
+    @Singleton
+    fun bindNewsRepository(
+        impl: NewsRepositoryImpl
+    ) : NewsRepository
+
+
+    companion object {
+
+        @Provides
+        @Singleton
+        fun provideJson():Json{
+            return Json {
+                ignoreUnknownKeys = true
+                coerceInputValues = true
+            }
+        }
+
+        @Provides
+        @Singleton
+        fun provideConverterFactory(
+            json: Json
+        ) : Converter.Factory{
+            return json.asConverterFactory(
+                "application/json".toMediaType()
+            )
+        }
+        @Provides
+        @Singleton
+        fun provideRetrofit(
+            converter: Converter.Factory
+        ) : Retrofit {
+            return Retrofit.Builder()
+                .baseUrl("https://newsapi.org/")
+                .addConverterFactory(converter)
+                .build()
+        }
+
+
+        @Provides
+        @Singleton
+        fun provideApiService(
+            retrofit : Retrofit
+        ): NewApiService {
+            return retrofit.create()
+        }
 
 
         @Provides
         @Singleton
         fun provideNewsDataBase(
             @ApplicationContext context: Context
-        ): NewsDatabase{
+        ): NewsDatabase {
             return Room.databaseBuilder(
                 context = context,
                 klass = NewsDatabase::class.java,
@@ -36,7 +91,7 @@ interface DataModule {
         @Singleton
         fun provideNewsDao(
             database: NewsDatabase
-        ): NewsDao{
+        ): NewsDao {
             return database.newsDao()
         }
     }

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">news</string>
+    <string name="top_bar_title">My News</string>
+    <string name="refresh_data_content_description">Refresh data</string>
+    <string name="clear_button_content_description">Clear button</string>
+    <string name="settings_button_content_description">Settings button</string>
+    <string name="remove_subscription_button">remove subscription</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+    <string name="add_subscription_from_query_button">Add subscription from query button</string>
+    <string name="add_subscription">Add subscription</string>
+    <string name="subscriptions">Subscriptions (%1$d)</string>
+    <string name="there_are_no_subscriptions_yet">There are no subscriptions yet.</string>
+    <string name="image_from_article">Image from article %1$s</string>
 </resources>

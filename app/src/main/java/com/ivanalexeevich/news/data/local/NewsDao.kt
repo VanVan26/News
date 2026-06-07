@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface NewsDao {
 
-
     @Query("SELECT * FROM subscriptions")
     fun getAllSubscriptions(): Flow<List<SubscriptionDbModel>>
 
@@ -28,7 +27,6 @@ interface NewsDao {
 
     @Upsert
     suspend fun addArticles(articles: List<ArticleDbModel>)
-
 
     @Query("DELETE FROM articles WHERE articles.topic IN (:topics)")
     suspend fun deleteArticlesByTopics(topics: List<String>)

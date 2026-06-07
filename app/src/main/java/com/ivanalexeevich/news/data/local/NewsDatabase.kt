@@ -10,7 +10,5 @@ import androidx.room.RoomDatabase
     exportSchema = false
 )
 abstract class NewsDatabase : RoomDatabase() {
-
     abstract fun newsDao(): NewsDao
-
 }
