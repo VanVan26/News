@@ -11,4 +11,9 @@
     <string name="subscriptions">Subscriptions (%1$d)</string>
     <string name="there_are_no_subscriptions_yet">There are no subscriptions yet.</string>
     <string name="image_from_article">Image from article %1$s</string>
+    <string name="open_in_new_icon">open in new icon</string>
+    <string name="read">Read</string>
+    <string name="share">Share</string>
+    <string name="articles">Articles (%1$d)</string>
+    <string name="no_articles_for_selected_subscriptions">No articles for selected subscriptions</string>
 </resources>
