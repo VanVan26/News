@@ -16,4 +16,24 @@
     <string name="share">Share</string>
     <string name="articles">Articles (%1$d)</string>
     <string name="no_articles_for_selected_subscriptions">No articles for selected subscriptions</string>
+    <string name="new_articles">New articles</string>
+    <string name="new_articles_notification">New articles</string>
+    <string name="update_subscriptions">Update %1$d subscriptions: %2$s</string>
+    <string name="settings">Settings</string>
+    <string name="select_language_for_new_search">Select language for new search</string>
+    <string name="search_language">Search Language</string>
+    <string name="notifications">Notifications</string>
+    <string name="show_notifications_about_new_articles">Show notifications about new articles</string>
+    <string name="switch_notifications">Switch notifications</string>
+    <string name="update_only_via_wi_fi">Update only via Wi-Fi</string>
+    <string name="save_mobile_data">Save mobile data</string>
+    <string name="switch_wi_fi_only">Switch Wi-Fi only</string>
+    <string name="updates_interval">Updates interval</string>
+    <string name="switch_language">Switch Language</string>
+    <string name="select_language_for_news_search">Select language for news search</string>
+    <string name="_1_hour">1 hour</string>
+    <string name="_30_minutes">30 minutes</string>
+    <string name="_15_minutes">15 minutes</string>
+    <string name="select_interval">Select Interval</string>
+    <string name="select_interval_for_update">Select interval for update</string>
 </resources>

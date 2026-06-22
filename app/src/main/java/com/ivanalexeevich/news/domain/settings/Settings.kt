@@ -1,14 +1,20 @@
 package com.ivanalexeevich.news.domain.settings
 
-import android.app.Notification
-import android.content.pm.PackageManager
-
 data class Settings(
     val language: Language,
     val interval: Interval,
-    val notificationsEnabledSetting: Boolean,
+    val notificationsEnabled: Boolean,
     val updateViaWifiEnabled: Boolean
     )
+{
+    companion object {
+        val DEFAULT_LANGUAGE = Language.RUSSIAN
+        val DEFAULT_INTERVAL = Interval.MIN_30
+        const val DEFAULT_NOTIFICATIONS_ENABLED = false
+        const val DEFAULT_WIFI_ONLY = false
+
+    }
+}
 
 enum class Language {
     ENGLISH, RUSSIAN, FRENCH, DEUTSCH

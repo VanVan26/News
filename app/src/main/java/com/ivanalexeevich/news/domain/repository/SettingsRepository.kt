@@ -8,7 +8,6 @@ interface SettingsRepository {
 
     fun getSettings(): Flow<Settings>
 
-
     suspend fun switchNotifications(enabled: Boolean)
     suspend fun updateLanguage(language: Language)
     suspend fun updateInterval(minutes: Int)

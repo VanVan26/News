@@ -1,15 +1,15 @@
 package com.ivanalexeevich.news.di
 
 import android.content.Context
-import androidx.annotation.UiContext
 import androidx.room.Room
 import androidx.work.WorkManager
-import androidx.work.impl.WorkManagerImpl
 import com.ivanalexeevich.news.data.local.NewsDao
 import com.ivanalexeevich.news.data.local.NewsDatabase
 import com.ivanalexeevich.news.data.remote.NewApiService
 import com.ivanalexeevich.news.data.repository.NewsRepositoryImpl
+import com.ivanalexeevich.news.data.repository.SettingsRepositoryImpl
 import com.ivanalexeevich.news.domain.repository.NewsRepository
+import com.ivanalexeevich.news.domain.repository.SettingsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -35,6 +35,11 @@ interface DataModule {
         impl: NewsRepositoryImpl
     ) : NewsRepository
 
+    @Binds
+    @Singleton
+    fun bindSettingsRepository(
+        impl: SettingsRepositoryImpl
+    ): SettingsRepository
 
     companion object {
 

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -5,19 +7,29 @@ plugins {
     alias(libs.plugins.serialization)
     alias(libs.plugins.hilt.android)
 }
+private val keyStorePropertiesFile = rootProject.file("keystore.properties")
+private val keyStoreProperties = keyStorePropertiesFile.inputStream().use {inputStream ->
+    Properties().apply{
+        load(inputStream)
+    }
+}
 
+private val apiKey = keyStoreProperties.getProperty("NEWS_API_KEY")
 android {
     namespace = "com.ivanalexeevich.news"
     compileSdk = 37
 
     defaultConfig {
         applicationId = "com.ivanalexeevich.news"
-        minSdk = 24
+
+        minSdk = 26
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "NEWS_API_KEY", apiKey)
+
     }
 
     buildTypes {
@@ -35,12 +47,16 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
 
     implementation(libs.androidx.hilt.work)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.material3)
+    implementation(libs.compose.material3)
     ksp(libs.androidx.hilt.compiler)
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.room.runtime)
